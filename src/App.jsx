@@ -1,10 +1,29 @@
-import { useState } from "react";
-
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import Main from "./components/Main";
+import Navbar from "./components/Navbar";
+import CandidateDetails from "./components/CandidateDetails";
+import { BrowserRouter } from "react-router-dom";
+import Grid from "./components/Grid";
 
 function App() {
   return (
-    <h1 className="text-3xl font-bold underline text-red-800">Hello world!</h1>
+    <>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="" element={<Main />} />
+          <Route
+            path="/:id"
+            element={
+              <>
+                <CandidateDetails /> <Grid />
+              </>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
