@@ -3,16 +3,24 @@ import { useParams } from "react-router-dom";
 import { getGridInfo } from "./service/data";
 import { useEffect } from "react";
 import moment from "moment";
-import { AiFillEye } from "react-icons/ai";
+import { AiFillEye, AiOutlineCloseCircle } from "react-icons/ai";
+import Modal from "react-modal";
+import PopUp from "./PopUp";
 
 export default function Grid() {
   const [items, setItems] = useState();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const { id } = useParams();
+  const [modalContent, setModalContent] = useState("");
 
   const getReports = async () => {
     const data = await getGridInfo(id);
     setItems(data);
   };
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
   useEffect(() => {
     getReports();
   }, [id]);
@@ -52,7 +60,25 @@ export default function Grid() {
                   </td>
                   <td key={`td4- ${index}`} className="px-6 py-3 text-center">
                     <p key={`p- ${index}`}>
-                      <AiFillEye />
+                      <AiFillEye
+                        onClick={() => {
+                          setModalIsOpen(true);
+                          setModalContent(
+                            <PopUp
+                              setModalIsOpen={setModalIsOpen}
+                              closeModal={closeModal}
+                              candidateName={item.candidateName}
+                              companyName={item.companyName}
+                              status={item.status}
+                              interviewDate={moment(item.interviewDate).format(
+                                "DD.MM.YYYY."
+                              )}
+                              phase={item.phase}
+                              note={item.note}
+                            />
+                          );
+                        }}
+                      />
                     </p>
                   </td>
                 </tr>
@@ -60,6 +86,17 @@ export default function Grid() {
             );
           })}
         </table>
+        <Modal
+          overlayClassName="overlay"
+          className="popup"
+          isOpen={modalIsOpen}
+          onRequestClose={() => setModalIsOpen(false)}
+          contentLabel="">
+          {modalContent}
+          <div className="close_btn" onClick={() => setModalIsOpen(false)}>
+            <AiOutlineCloseCircle />
+          </div>
+        </Modal>
       </div>
     );
   }

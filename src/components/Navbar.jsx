@@ -8,7 +8,7 @@ export default function Navbar() {
         <p>Bit Students</p>
       </Link>
       <button class=" bg-transparent hover:bg-white hover:text-blue-600 text-white  py-1 px-4 rounded border border-white">
-        Admin
+        <Link to={"/create.report"}>Admin</Link>
       </button>
     </div>
   );

@@ -21,11 +21,10 @@ export default function Main() {
 
   return (
     <>
-      <form className="items-center  w-72 flex ">
-        <label className="sr-only">Search</label>
+      <form className="flex relative -right-3/4">
         <div className=" relative">
-          <i className=" absolute left-7 translate-y-24">
-            {/* <BiSearchAlt2 /> */}
+          <i className=" absolute left-11 translate-y-24 text-lg">
+            <BiSearchAlt2 />
           </i>
           <input
             value={query}
