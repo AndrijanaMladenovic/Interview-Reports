@@ -36,3 +36,29 @@ export const postDetail = async (data) => {
       console.log(error);
     });
 };
+
+export const getPopUp = async (id) => {
+  const res = await axios.get(
+    `http://localhost:3333/api/reports?candidateId=${id}`
+  );
+  return res.data;
+};
+export const getReport = async () => {
+  const url = "http://localhost:3333/api/reports";
+  const res = await axios.get(url);
+  return res;
+};
+
+export const deletePost = async (id) => {
+  const url = `http://localhost:3333/api/reports/${id}`;
+  const res = await axios
+    .delete(url)
+    .then((response) => {
+      console.log(response);
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.error("There was an error!", error);
+    });
+  return res;
+};

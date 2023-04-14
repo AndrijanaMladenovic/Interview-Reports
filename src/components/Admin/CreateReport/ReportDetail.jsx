@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { postDetail } from "../../service/data";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function ReportDetail({
   companyName,
@@ -9,6 +10,7 @@ export default function ReportDetail({
   setPhase,
   activeId,
 }) {
+  let navigate = useNavigate();
   const [formState, setFormState] = useState({
     interviewDate: "",
     phase: "",
@@ -56,6 +58,7 @@ export default function ReportDetail({
       alert("Please fill in all fields before submitting.");
     } else {
       submitData();
+      navigate("/reports");
     }
   };
 

@@ -14,11 +14,10 @@ export default function CandidateDetails() {
   useEffect(() => {
     getData();
   }, [id]);
-  console.log(items);
 
   if (items) {
     return (
-      <div className=" flex gap-14 align-middle justify-center m-10 items-center">
+      <div className="flex flex-row gap-14 align-middle justify-center m-10 items-center">
         <div>
           <img src={items.avatar} className=" w-36" />
         </div>

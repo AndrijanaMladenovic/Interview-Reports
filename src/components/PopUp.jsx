@@ -1,8 +1,6 @@
 import React from "react";
-import { AiOutlineCloseCircle } from "react-icons/ai";
 
 export default function PopUp({
-  closeModal,
   candidateName,
   companyName,
   status,
@@ -29,9 +27,6 @@ export default function PopUp({
           <span className="font-bold text-blue-400">Notes</span>
           <p className=" font-light ">{note}</p>
         </div>
-        {/* <button onClick={closeModal}>
-          <AiOutlineCloseCircle />
-        </button> */}
       </div>
     </>
   );

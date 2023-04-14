@@ -8,6 +8,7 @@ import CandidateDetails from "./components/CandidateDetails";
 import { BrowserRouter } from "react-router-dom";
 import Grid from "./components/Grid";
 import ReportPage from "./components/Admin/CreateReport/ReportPage";
+import Reports from "./components/Admin/Reports/Reports";
 Modal.setAppElement("#root");
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
               />
             }
           />
+          <Route path="/reports" element={<Reports />}></Route>
         </Routes>
       </BrowserRouter>
     </>

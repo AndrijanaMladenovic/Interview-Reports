@@ -21,41 +21,44 @@ export default function Main() {
 
   return (
     <>
-      <form className="flex relative -right-3/4">
-        <div className=" relative">
-          <i className=" absolute left-11 translate-y-24 text-lg">
-            <BiSearchAlt2 />
-          </i>
-          <input
-            value={query}
-            onChange={(e) => {
-              setQuery(e.target.value);
-            }}
-            type="text"
-            id="simple-search"
-            className=" m-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Search"
-          />
+      <div className="flex flex-col items-center">
+        <form className=" w-64 self-end  m-8">
+          <div className=" relative">
+            <i className=" absolute left-3 ">
+              <BiSearchAlt2 />
+            </i>
+            <input
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value);
+              }}
+              type="text"
+              id="simple-search"
+              className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Search"
+            />
+          </div>
+        </form>
+        <div className="grid 2xl:grid-cols-3 gap-10 justify-items-center xl:grid grid-cols-2">
+          {items ? (
+            filteredItems.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className=" flex flex-col justify-center items-center"
+                  onClick={() => {
+                    navigate(`/${item.id}`);
+                  }}>
+                  <img src={item.avatar} className=" w-24" />
+                  <p className=" font-bold">{item.name}</p>
+                  <p className=" font-light">{item.email}</p>
+                </div>
+              );
+            })
+          ) : (
+            <p>Not found</p>
+          )}
         </div>
-      </form>
-      <div className="grid grid-cols-3 gap-5 justify-items-center ">
-        {items ? (
-          filteredItems.map((item) => {
-            return (
-              <div
-                className=" flex flex-col justify-center items-center"
-                onClick={() => {
-                  navigate(`/${item.id}`);
-                }}>
-                <img src={item.avatar} alt="" className=" w-24" />
-                <p className=" font-bold">{item.name}</p>
-                <p className=" font-light">{item.email}</p>
-              </div>
-            );
-          })
-        ) : (
-          <p>Not found</p>
-        )}
       </div>
     </>
   );
